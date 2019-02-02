@@ -16,24 +16,19 @@ my_hash = {}
 end
   
 def apply_coupons(cart, coupons)
-=begin
-cart {food{:price=>x,:count=>x}
-coupons [{:item=>x,:num=>2, :cost=>x]
-1. look in cart
-2. is there a coupon for that item?
-3. is quantity of item in cart enough?
-4. add the item /w coupon to cart
-5. remove appropriate quantity of item
-=end
-  coupons.each do |coupon|
-    cart.each do |food,food_data|
-      food_data.each do |food_key,data|
-        if food == coupon[:item] && food_data[:count] >= coupon[:num]
-          cart["#{food} W/COUPON"] = {price: coupon[:cost], clearance: food_data[:clearance], count: (coupon[:num]/food_data[:count])}
-        end
+  coupon_hash = {}
+  cart.each do |key, value|
+    coupon_hash[key] = value.clone
+    coupons.each do |coupon|
+      if coupon[:item] == key
+        coupon_hash[key][:count] = value[:count]%coupon[:num]
+        coupon_hash[key + " W/COUPON"] = value.clone
+        coupon_hash[key + " W/COUPON"][:count] = value[:count] / coupon[:num]
+        coupon_hash[key + " W/COUPON"][:price] = coupon[:cost]
       end
     end
   end
+  coupon_hash
 end
 
 def apply_clearance(cart)
