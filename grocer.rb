@@ -32,6 +32,7 @@ def apply_coupons(cart, coupons)
 end
 
 def apply_clearance(cart)
+  clearance_cart = {}
   cart.each do |item,details|
     if cart[item][:clearance]
       clearance_cart[item] = {
