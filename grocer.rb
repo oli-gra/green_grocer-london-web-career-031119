@@ -37,9 +37,9 @@ def apply_clearance(cart)
     binding.pry
     if cart[item][:clearance]
       clearance_cart[item] = {
-        price: [details][:price] * 0.80,
+        price: details[:price] * 0.80,
         clearance: true,
-        count: [details][:count]
+        count: details[:count]
       }
     else
       clearance_cart[item] = details.clone
