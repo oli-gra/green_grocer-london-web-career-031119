@@ -37,7 +37,7 @@ def apply_clearance(cart)
  
     if cart[item][:clearance]
       clearance_cart[item] = {
-        price: (details[:price] * 0.80).round,
+        price: (details[:price] * 0.80).round(1),
         clearance: true,
         count: details[:count]
       }
