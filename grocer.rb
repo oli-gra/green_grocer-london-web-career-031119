@@ -59,4 +59,5 @@ def checkout(cart, coupons)
     return (cart_tot * 0.90).round(1)
   else
     cart_tot
+  end
 end
