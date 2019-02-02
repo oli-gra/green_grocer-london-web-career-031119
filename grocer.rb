@@ -55,5 +55,8 @@ def checkout(cart, coupons)
   cleared.each do |item,details|
     cart_tot += details[:price] * details[:count]
   end
-  cart_tot
+  if cart_tot > 100
+    return (cart_tot * 0.90).round(1)
+  else
+    cart_tot
 end
