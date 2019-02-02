@@ -37,7 +37,18 @@ coupons [{:item=>x,:num=>2, :cost=>x]
 end
 
 def apply_clearance(cart)
-  # code here
+  cart.each do |item,details|
+    if cart[item][:clearance]
+      clearance_cart[item] = {
+        price: [details][:price] * 0.80,
+        clearance: true,
+        count: [details][:count]
+      }
+    else
+      clearance_cart[item] = details.clone
+    end
+  end
+  clearance_cart
 end
 
 def checkout(cart, coupons)
