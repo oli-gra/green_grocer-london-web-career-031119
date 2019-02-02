@@ -49,15 +49,10 @@ end
 
 def checkout(cart, coupons)
   cart_tot = 0
-  consolidate_cart(cart)
-  couponing = apply_coupons(consolidating,coupons)
-  cleared = apply_clearance(couponing)
-  cleared.each do |item,details|
+  final_cart = apply_clearance(apply_coupons(consolidate_cart(cart),coupons))
+  final_cart.each do |item,details|
     cart_tot += details[:price] * details[:count]
   end
-  if cart_tot > 100
-    return (cart_tot * 0.90).round(1)
-  else
-    cart_tot
-  end
+  return (cart_tot * 0.90).round(1) if cart_tot > 100 
+  cart_tot
 end
