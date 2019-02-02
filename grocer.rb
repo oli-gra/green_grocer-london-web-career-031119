@@ -55,5 +55,5 @@ def checkout(cart, coupons)
   cleared.each do |item,details|
     cart_tot += details[:price] * details[:count]
   end
-  
+  cart_tot
 end
