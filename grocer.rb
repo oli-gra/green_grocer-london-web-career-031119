@@ -49,7 +49,8 @@ def apply_clearance(cart)
 end
 
 def checkout(cart, coupons)
-  sub_tot = consolidate_cart(cart)
-  coupon_tot = apply_coupons(sub_tot,coupons)
-  return apply_clearance(coupon_tot)
+  consolidating = consolidate_cart(cart)
+  couponing = apply_coupons(consolidating,coupons)
+  cleared = apply_clearance(couponing)
+  binding.pry
 end
